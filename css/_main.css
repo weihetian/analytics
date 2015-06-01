@@ -1,0 +1,43 @@
+.checkbox_area
+{
+	margin:50px;
+}
+
+.dropzone{
+	border:2px dashed #2980b9;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+}
+
+.dropzone.dragover{
+	border:2px dashed white;
+	background-color:#2980b9;
+	color:white;
+}
+
+.blue-flat-button {
+	
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+  height: 35px;
+  padding: 0;
+  margin:10px;
+  font-size: 15px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #3498db;
+  border: 0;
+  border-bottom: 2px solid #2980b9;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #2980b9;
+  box-shadow: inset 0 -2px #2980b9;
+}
+.blue-flat-button:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
