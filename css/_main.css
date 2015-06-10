@@ -1,3 +1,9 @@
+body{
+	background-color:#ecf0f1;
+	height:100%;
+	width:100%;
+}
+
 .checkbox_area
 {
 	margin:50px;
@@ -40,4 +46,29 @@
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+.middle_layer
+{
+	position:fixed;
+	height:100%;
+	width:100%;
+	top:0px;
+	left:0px;
+	background-color:black;
+	opacity:0.4;
+	z-index:3;
+}
+
+.selector
+{
+	position:fixed;
+	top:30%;
+	height:20%;
+	left:30%;
+	width:40%;
+	background-color:white;
+	z-index:5;
+	padding:30px 30px;
+	box-shadow:0 0 5px #bdc3c7;
 }
