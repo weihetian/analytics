@@ -6,6 +6,7 @@
 		
 		$scope.campaigns= Array();
 		$scope.current_campaign_name;
+		$scope.current_campaign_id;
 		
 		var startsearching = true;
 		$scope.$watch("inputstring", function(newValue, oldValue) {
@@ -70,7 +71,16 @@
 					if($scope.current_campaign_name==null){
 						
 					}else{
-						
+						for(var i =0;i<$scope.campaigns.length;i++){
+							if($scope.campaigns[i].name!=null){
+								//   console.log($scope.friends[i].username);
+								if($scope.campaigns[i].name== $scope.current_campaign_name)
+								{
+									$scope.current_campaign_id=$scope.campaigns[i].id;
+
+								}
+							}
+							}
 					}
 				}
 			)
@@ -81,7 +91,7 @@
 				$('.selector').hide();
 			}
 		
-	
+		
 		$scope.select_campaign = function(){
 			
 			$('.middle_layer').show();

@@ -11,6 +11,7 @@
   	    <title>Analytics</title>
 
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -18,9 +19,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-
+	<script type="text/javascript" src="js/controllers/checkbox_controller.js"></script>
+	
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		 <link href="css/_main.css" rel="stylesheet">
 
 </head>
@@ -36,25 +39,38 @@
 		  <h1>Campaign: <span class='campaign_name'>{{current_campaign_name}}</span></h1>
 		</div>
 	</div>
-	<div class='container checkbox_area'>
+	<div class='container checkbox_area' ng-controller='checkboxController'>
 		<div class='col-md-8 col-md-offset-2 checkbox_area_content'>
-		<input type="checkbox"> Miles report
+		<input type="checkbox" ng-model="mile_report"> Miles report 
+		
 		<br>
-		<input type="checkbox"> Impressions report
+		<input type="checkbox" ng-model="impression_report"> Impressions report
 		<br>
-		<input type="checkbox"> Maps
+		<input type="checkbox"  ng-model="map_report"> Maps
 		<br>
-		<input type="checkbox"> Stories
+		<input type="checkbox"  ng-model="story_report"> Stories
+			<div>
+				<div class='col-md-4'>
+			<input class='datepicker form-control' id='start' placeholder="start"/></div>
+		
+				<div class='col-md-4'>
+			<input class='datepicker form-control' id='end'  placeholder="end"/></div>
+				<div class='col-md-4'>
+			<input type="submit" value="create" ng-click='generate()' class="blue-flat-button"/>
+			</div>
 		</div>
+		</div>
+			
 	</div>
 	
 	<div class='container'>
 		<div class='col-md-8 col-md-offset-2'>
-		<h4>Pictures:</h4>
-		<div class='dropzone' id="dropzone">Drop your pictures here!</div>
-	</div>
-		<div class='col-md-8 col-md-offset-2'>
-			<h4>Stories:</h4>
+			
+			<h4>Pictures:</h4>
+	<div class='dropzone' id="dropzone">Drop your pictures here!</div>
+	 </div>
+	 	<div class='col-md-8 col-md-offset-2'>
+		 	<h4>Stories:</h4>
 			<textarea class="form-control" rows="4"></textarea>
 			
 		</div>
@@ -81,6 +97,11 @@
 		
 	</div>
 </div>
-	
+
+<script>
+$(function() {
+   $( ".datepicker" ).datepicker();
+ });
+</script>
 </body>
 </html>
