@@ -81,6 +81,7 @@
 				$('.selector').hide();
 			}
 		
+	
 		$scope.select_campaign = function(){
 			
 			$('.middle_layer').show();
