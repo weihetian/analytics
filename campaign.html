@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app='analytics'>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,19 +10,25 @@
 
   	    <title>Analytics</title>
 
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-		<script src="js/jquery.transit.min.js"></script>
 		 <link href="css/_main.css" rel="stylesheet">
 
 </head>
 <body>
+	<div class='top_bar'>
+		
+	</div>
+	<div class='main' ng-controller='selectorController'>
 	<div class='container checkbox_area'>
 		<div class='col-md-4 col-md-offset-2'>
 		<input type="checkbox"> Miles report
@@ -56,12 +62,18 @@
 	</div>
 	
 	<div class='selector'>
-		
-			<input class='form-control' placeholder='campaign name' />
-		<div class='col-md-4 col-md-offset-4'>
-			<input type="submit" value="submit" class="blue-flat-button" >
+		<div class='row'>
+			<div class='col-md-9'>
+			<input class='form-control' id='search_bar' ng-blur='clean()' ng-focus='resume()' ng-model="inputstring" placeholder='campaign name' />
+			<ul class='usersearch_list'><li class='usersearch_item' ng-mousedown='select_campaign_name(campaign.name)' ng-repeat='campaign in searchcampaigns'>{{campaign.name}}</li></ul>
 		</div>
+		<div class='col-md-3'>
+			<input type="submit" value="submit" id='search_button' ng-click='submit_campaign()'  class="blue-flat-button" >
+		</div>
+		</div>
+		
 	</div>
+</div>
 	
 </body>
 </html>
