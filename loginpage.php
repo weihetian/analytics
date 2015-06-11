@@ -1,6 +1,6 @@
 <html>
 <head>
-  <script>type="text/javascript"</script>
+  <script type="text/javascript"></script>
   <title>AJAX TEST</title>
   <style type = "text/css">
   #loginbox{
@@ -13,9 +13,9 @@
 </head>
 <body>
   <div id = "loginbox">
-    <input id="username" type = "text" placeholder = "your username"/>
+    <input id="username" type = "text" placeholder = "username"/>
     <br>
-    <input id="password" type = "text" placeholder = "your password"/>
+    <input id="password" type = "password" placeholder = "password"/>
     <br>
     <button>Sign in</button>
   </div>
@@ -33,7 +33,7 @@
         'password':password
       }
       success:{
-        
+
       }
     })
   })
