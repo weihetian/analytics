@@ -64,7 +64,32 @@
 				//alert("impression_report");
 				var startdate = $("#start").val();
 				var enddate = $("#end").val();
-				var dataString='campaignid='+$scope.current_campaign_id+"&startdate="+startdate+"&enddate="+enddate;
+				var dataString='campaignid='+$scope.current_campaign_id+"&startdate="+startdate+"&enddate="+enddate+"&type=trends";
+				//alert(dataString);
+				$.ajax({
+					type: "POST",
+					url: "data_access/pull_impression_data.php",
+					datatype: "html",
+					data: dataString,
+					success: function(data) {
+								//var campaigns = $.parseJSON(data);
+						alert(data);
+						//$scope.campaigns = campaigns;
+						//$scope.$digest();
+						//	alert(data);
+						// var results = $.parseJSON(data);
+						// $scope.posts = results;
+						// $scope.$digest();
+						// alert(data);
+					}
+				})
+			}
+			
+			if($scope.impression_report_cities){
+				//alert("impression_report");
+				var startdate = $("#start").val();
+				var enddate = $("#end").val();
+				var dataString='campaignid='+$scope.current_campaign_id+"&startdate="+startdate+"&enddate="+enddate+"&type=cities";
 				//alert(dataString);
 				$.ajax({
 					type: "POST",

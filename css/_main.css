@@ -161,3 +161,24 @@ ul
 {
 	background-color:#ecf0f1;
 }
+
+.uploadimages_area_singlepic
+{
+	
+	padding:5px;
+	margin:5px;
+	float:left;
+	background-color:white;
+	box-shadow:0 0 5px #bdc3c7;
+}
+
+.uploadimages_area_singlepic img
+{
+	
+	max-height:80px;
+}
+
+.button_margin
+{
+	margin:10px 0px;
+}
