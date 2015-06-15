@@ -11,6 +11,7 @@ if (mysqli_connect_errno())
   
 $devices = array();
 $campaignid=$_POST['campaignid'];
+$type=$_POST['type'];
 $startdate=date('Y-m-d', strtotime($_POST['startdate']));
 $enddate=date('Y-m-d', strtotime($_POST['enddate']));
 
@@ -31,11 +32,20 @@ $sql = "SELECT * FROM miles_report INNER JOIN device ON `miles_report`.`deviceid
   // $result = mysqli_query($con,"SELECT * FROM miles_report WHERE date BETWEEN '$startdate' AND '$enddate' AND deviceid IN (" . implode(',', $devices) . ") ORDER BY date ASC")or die("Error: ".mysqli_error($con));
   $result=mysqli_query($con,$sql)or die("Error: ".mysqli_error($con));
 
-
+  if($type=='trends'){
  while($row = mysqli_fetch_array($result)) {
  		$date = $row['date'];
  		$mile = $row['mile'];
  		$theresult[$date]+=$mile;				
+ }}else if($type=='cities')
+ {
+	 while($row = mysqli_fetch_array($result)) {
+	 	$city= $row['city'];
+	 	$mile = $row['mile'];
+	 	$theresult[$city]+=$mile;				
+	 }
+	
+	
  }
  //arsort($theresult);
 
