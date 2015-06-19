@@ -10,6 +10,16 @@
 		});
 		
 		
+		
+			
+		// $scope.create_chart = function(id){
+	// 		if(id==1)
+	// 		{
+	//
+	// 		}
+	// 	}
+	//	
+		
 		$scope.generate = function(){
 			if($scope.mile_report_trends){
 				//alert("mile");
@@ -23,14 +33,14 @@
 					datatype: "html",
 					data: dataString,
 					success: function(data) {
-								//var campaigns = $.parseJSON(data);
-						alert(data);
+						$scope.trendsjson = $.parseJSON(data);
+					//	alert(data);
 						//$scope.campaigns = campaigns;
 						//$scope.$digest();
 						//	alert(data);
 						// var results = $.parseJSON(data);
 						// $scope.posts = results;
-						// $scope.$digest();
+						 $scope.$digest();
 						// alert(data);
 					}
 				})
@@ -47,18 +57,20 @@
 					datatype: "html",
 					data: dataString,
 					success: function(data) {
+						$scope.citiesjson = $.parseJSON(data);
 								//var campaigns = $.parseJSON(data);
-						alert(data);
+					//	alert(data);
 						//$scope.campaigns = campaigns;
 						//$scope.$digest();
 						//	alert(data);
 						// var results = $.parseJSON(data);
 						// $scope.posts = results;
-						// $scope.$digest();
+						 $scope.$digest();
 						// alert(data);
 					}
 				})
 			}
+			
 			
 			if($scope.impression_report_trends){
 				//alert("impression_report");
@@ -72,8 +84,9 @@
 					datatype: "html",
 					data: dataString,
 					success: function(data) {
+					//	console.log(data);
 								//var campaigns = $.parseJSON(data);
-						alert(data);
+					//	alert(data);
 						//$scope.campaigns = campaigns;
 						//$scope.$digest();
 						//	alert(data);
@@ -97,8 +110,9 @@
 					datatype: "html",
 					data: dataString,
 					success: function(data) {
+					//	console.log(data);
 								//var campaigns = $.parseJSON(data);
-						alert(data);
+					//	alert(data);
 						//$scope.campaigns = campaigns;
 						//$scope.$digest();
 						//	alert(data);
@@ -117,6 +131,9 @@
 			if($scope.story_report){
 				alert("story_report");	
 			}
+			
+
+		 $("html, body").delay(500).animate({ scrollTop: $('.report_area').offset().top }, 1000);
 		}
 		
 		

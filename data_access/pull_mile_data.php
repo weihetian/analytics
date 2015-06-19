@@ -42,10 +42,12 @@ $sql = "SELECT * FROM miles_report INNER JOIN device ON `miles_report`.`deviceid
 	 while($row = mysqli_fetch_array($result)) {
 	 	$city= $row['city'];
 	 	$mile = $row['mile'];
-	 	$theresult[$city]+=$mile;				
+	 	$theresult[$city]+=$mile;
+
+	   	
 	 }
 	
-	
+	 arsort($theresult);
  }
  //arsort($theresult);
 

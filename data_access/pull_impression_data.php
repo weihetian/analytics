@@ -44,6 +44,7 @@ $sql = "SELECT * FROM impression_daily_report INNER JOIN device ON `impression_d
 	 	$impression = $row['impression'];
 	 	$theresult[$city]+=$impression;				
 	 }
+	 arsort($theresult);
  }
 
  //arsort($theresult);

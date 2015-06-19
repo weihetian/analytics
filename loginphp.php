@@ -1,18 +1,43 @@
 <?php
-  include_once('db.php');
+ // include_once('db.php');
 
-  $username = mysql_real_escape_string($_POST["username"]);
-  $password = mysql_real_escape_string(md5($_POST["password"]));
+  // $con= mysqli_connect("54.86.136.195","ec2-user","","carvertise");
+  // if (mysqli_connect_errno()) {
+  //   echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  // }
+  //
+$username = "root";
+$password = "bat00man";
+$hostname = "54.86.136.195";
+$dbname = "carvertise";
+$port = 80;
 
+$con= mysqli_connect($hostname, $username, $password,$dbname,$port);
 
-  $sql = "SELECT count(*) FROM user WHERE (username = '$username' AND password='$password')";
-  $res = mysql_query($sql);
-  $row = mysql_fetch_array($res);
+// Check connection
+if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+  // $username = mysqli_real_escape_string($_POST["username"]);
+  // $password = mysqli_real_escape_string($_POST["password"]);
 
-  if($row[0]>0){
-    echo"login Successful";
+	// echo $username;
+// 	echo $password;
+  
+  $sql = "SELECT * FROM user";
+	
+  echo $sql;
+
+  $res = mysqli_query($con,$sql);
+  while($row = mysqli_fetch_array($res))
+  {
+	  echo $row['username'];
   }
-  else {
-    echo "Failed to Login";
-  }
+
+  // if($row[0]>0){
+ //    echo"login Successful";
+ //  }
+ //  else {
+ //    echo "Failed to Login";
+ //  }
 ?>
