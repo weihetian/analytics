@@ -53,7 +53,7 @@
 		</div>
 		<div class='container checkbox_area' >
 			<div class='col-md-8 col-md-offset-2 checkbox_area_content'>
-			
+			<div class='row'>
 				<div class='col-md-6 checkbox_div'>
 					<h4 class='title'> Miles Report</h4>
 					<input type="checkbox" ng-model="mile_report_trends"> Trends
@@ -67,7 +67,9 @@
 					<br>
 					<input type="checkbox" ng-model="impression_report_cities"> Cities
 				</div>
-		 
+				
+			</div>
+		 	<div class='row'>
 				<div class='col-md-6 checkbox_div'>
 					<h4 class='title'> Maps</h4>
 					<input type="checkbox"  ng-model="map_report"> Paths
@@ -78,7 +80,16 @@
 					<input type="checkbox"  ng-model="story_report"> Stories
 			
 				</div>
-				<div>
+			</div>
+			
+				<div class='row'>
+					<div class='col-md-6 checkbox_div'>
+						<h4 class='title'> Cover Page</h4>
+						<input type="checkbox"  ng-model="cover_report"> Cover Page
+					</div>
+				</div>
+				
+				<div class='row'>
 					<div class='col-md-4'>
 						<input class='datepicker form-control' id='start' placeholder="start"/></div>
 		
@@ -124,22 +135,79 @@
 					</div>
 					
 					
-		
+					
 				</div>
-				
+		<div class='cover whole_page' ng-show="cover">
+			<div class='cover_center'>
+				<div class='cover_campaign_name'>{{current_campaign_name}}</div>
+				<div class='cover_carvertise_name'>Carvertise</div>
+			</div>
+		</div>
 	
 				<div class='report_area container' ng-controller='chartsController'>
+					
+					
+					
 					<div class='chart_area'>
-						<div class='mile_trend_report'>
-							<div class='data_area'>
+						
+						
+						<!-- Miles Report -->
+						<div class='whole_page' >
+							<div class='data_area' ng-show='mile_trend_report'>
+									<div class='chart_title'>
+										<i class="fa fa-line-chart"></i> Miles Line Chart
+									</div>
 									<div class='grid_1 grid '>
+										<span class='grid_header'>Total</span>
+										<div class='grid_date'>{{total}}</div>
+										<span class='unit'>Miles</span>
 									</div>
 									<div class='grid_2 grid'>
+										<span class='grid_header'>Average</span>
+										<div class='grid_date'>{{average}}</div>
+										<span class='unit'>Miles/day</span>
 									</div>
 							</div>
+							
 							<canvas id="mile_trendChart" width="100" height="100"></canvas>
 						</div>
-						<canvas id="mile_cityChart" width="100" height="100"></canvas>
+						<div class='whole_page' >
+							<div class='data_area' ng-show='mile_cities_report'>
+								<div class='chart_title'>
+									<i class="fa fa-bar-chart"></i> Miles Bar Chart
+								</div>
+							</div>
+							<canvas id="mile_cityChart" width="100" height="100"></canvas>
+						</div>
+						
+						<!-- Impressions Report -->
+						<div class='whole_page' >
+							<div class='data_area' ng-show='impressions_trend_report'>
+									<div class='chart_title'>
+										<i class="fa fa-line-chart"></i> Impressions Line Chart
+									</div>
+									<div class='grid_1 grid '>
+										<span class='grid_header'>Total</span>
+										<div class='grid_date'>{{total_impressions}}</div>
+										<span class='unit'>Impressions</span>
+									</div>
+									<div class='grid_2 grid'>
+										<span class='grid_header'>Average</span>
+										<div class='grid_date'>{{average_impressions}}</div>
+										<span class='unit'>Impressions/Day</span>
+									</div>
+							</div>
+							
+							<canvas id="impression_trendChart" width="100" height="100"></canvas>
+						</div>
+						<div class='whole_page' >
+							<div class='data_area' ng-show='impressions_cities_report'>
+								<div class='chart_title'>
+									<i class="fa fa-bar-chart"></i>  Impressions Bar Chart
+								</div>
+							</div>
+							<canvas id="impression_cityChart" width="100" height="100"></canvas>
+						</div>
 						
 					</div>
 				</div>

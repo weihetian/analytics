@@ -9,8 +9,11 @@
 			}
 		});
 		
-		
-		
+		$scope.mile_trend_report = false;
+		$scope.mile_cities_report=false;
+		$scope.impression_trend_report = false;
+		$scope.impression_cities_report=false;
+		$scope.cover = false;
 			
 		// $scope.create_chart = function(id){
 	// 		if(id==1)
@@ -21,6 +24,11 @@
 	//	
 		
 		$scope.generate = function(){
+			if($scope.cover_report){
+				
+					$scope.cover = true;
+					
+			}
 			if($scope.mile_report_trends){
 				//alert("mile");
 				var startdate = $("#start").val();
@@ -33,7 +41,9 @@
 					datatype: "html",
 					data: dataString,
 					success: function(data) {
-						$scope.trendsjson = $.parseJSON(data);
+
+						$scope.mile_trend_report = true;
+						$scope.mile_trendsjson = $.parseJSON(data);
 					//	alert(data);
 						//$scope.campaigns = campaigns;
 						//$scope.$digest();
@@ -41,6 +51,7 @@
 						// var results = $.parseJSON(data);
 						// $scope.posts = results;
 						 $scope.$digest();
+						 
 						// alert(data);
 					}
 				})
@@ -57,7 +68,8 @@
 					datatype: "html",
 					data: dataString,
 					success: function(data) {
-						$scope.citiesjson = $.parseJSON(data);
+						$scope.mile_cities_report = true;
+						$scope.mile_citiesjson = $.parseJSON(data);
 								//var campaigns = $.parseJSON(data);
 					//	alert(data);
 						//$scope.campaigns = campaigns;
@@ -84,6 +96,18 @@
 					datatype: "html",
 					data: dataString,
 					success: function(data) {
+						
+
+						$scope.impressions_trend_report = true;
+						$scope.impressions_trendsjson = $.parseJSON(data);
+								//var campaigns = $.parseJSON(data);
+					//	alert(data);
+						//$scope.campaigns = campaigns;
+						//$scope.$digest();
+						//	alert(data);
+						// var results = $.parseJSON(data);
+						// $scope.posts = results;
+						 $scope.$digest();
 					//	console.log(data);
 								//var campaigns = $.parseJSON(data);
 					//	alert(data);
@@ -110,11 +134,15 @@
 					datatype: "html",
 					data: dataString,
 					success: function(data) {
+						
+
+						$scope.impressions_cities_report = true;
+						$scope.impressions_citiesjson = $.parseJSON(data);
 					//	console.log(data);
 								//var campaigns = $.parseJSON(data);
 					//	alert(data);
 						//$scope.campaigns = campaigns;
-						//$scope.$digest();
+						$scope.$digest();
 						//	alert(data);
 						// var results = $.parseJSON(data);
 						// $scope.posts = results;

@@ -4,6 +4,8 @@
 
 	app.controller('selectorController',function($scope){
 		
+		 $("html, body").animate({ scrollTop: 0 }, 800);
+		
 		$scope.campaigns= Array();
 		$scope.current_campaign_name;
 		$scope.current_campaign_id;
@@ -87,6 +89,7 @@
 			
 			
 			$scope.cancel_select_campaign = function(){
+				 $("html, body").animate({ scrollTop: 0 }, 800);
 				$('.middle_layer').hide();
 				$('.selector').hide();
 			}
