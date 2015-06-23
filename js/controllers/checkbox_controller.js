@@ -157,7 +157,38 @@
 				alert("map_report");	
 			}
 			if($scope.story_report){
-				alert("story_report");	
+				var dataString='campaignid='+$scope.current_campaign_id;
+				
+				$.ajax({
+					type: "POST",
+					url: "data_access/pull_stories.php",
+					datatype: "html",
+					data: dataString,
+					success: function(data) {
+						//$scope.$digest();alert(data);
+
+						$scope.stories_data = $.parseJSON(data);
+
+						$scope.$digest();
+					}
+				})
+			}
+			if($scope.pic_report){
+				var dataString='campaignid='+$scope.current_campaign_id;
+				
+				$.ajax({
+					type: "POST",
+					url: "data_access/pull_images.php",
+					datatype: "html",
+					data: dataString,
+					success: function(data) {
+						//$scope.$digest();alert(data);
+
+						$scope.images_data = $.parseJSON(data);
+
+						$scope.$digest();
+					}
+				})
 			}
 			
 

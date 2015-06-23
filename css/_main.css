@@ -296,3 +296,62 @@ ul
 	font-size:13px;
 	float:right;
 }
+
+.single_pic_container
+{
+	float:left;
+	position:relative;
+	max-width:300px;
+	background-color:white;
+	margin:10px;
+
+	box-shadow:0 0 5px #bdc3c7;
+	padding:10px;
+}
+
+.single_pic
+{
+	position:relative;
+	overflow:hidden;
+	
+}
+
+.single_pic img
+{
+	width:100%;
+}
+
+.delete_btn
+{
+	position:absolute;
+	border:1px solid red;
+	top:5px;
+	right:5px;
+	cursor:pointer;
+}
+
+.delete_btn:hover
+{
+	border:1px solid white;
+}
+
+
+.single_story_container
+{
+	float:left;
+	position:relative;
+	max-width:300px;
+	background-color:white;
+	margin:10px;
+
+	box-shadow:0 0 5px #bdc3c7;
+	padding:10px;
+}
+
+.single_pic
+{
+	position:relative;
+	width:100%
+	
+}
+

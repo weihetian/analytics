@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='analytics'>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-site-verification" content="tp-i_OBftNvhRzM8ME25CS8VGzGZW0M_oeizPYR5lcU" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+
+
+	<title>Analytics</title>
+
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+	<script src="js/Chart.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/controllers/checkbox_controller.js"></script>
+	
+
+	<script type="text/javascript" src="js/controllers/dragpic_controller.js"></script>
+
+	<script type="text/javascript" src="js/controllers/story_controller.js"></script>
+	<script type="text/javascript" src="js/controllers/charts_controller.js"></script>
+
+	<script type="text/javascript" src="js/controllers/pictures_controller.js"></script>
+	
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	
+	<link href="css/_main.css" rel="stylesheet">
+ 
+
+</head>
+<body  ng-controller='selectorController'>
+	<div class='top_bar'>
+		<div class='top_bar_title'>
+			PDF Builder
+		</div>
+		<div class='top_bar_select'>
+			<input type="submit" value="change campaign" ng-click='select_campaign()' class="blue-flat-button" >
+		</div>
+	</div>
+	
+	<div class='main' ng-controller='checkboxController'>
+		<div class='container'>
+			<div class="col-md-8 col-md-offset-2 page-header header">
+				<h1>Campaign: <span class='campaign_name'>{{current_campaign_name}}</span></h1>
+			</div>
+		</div>
+		<div class='container checkbox_area' >
+			<div class='col-md-8 col-md-offset-2 checkbox_area_content'>
+			<div class='row'>
+				<div class='col-md-6 checkbox_div'>
+					<h4 class='title'> Miles Report</h4>
+					<input type="checkbox" ng-model="mile_report_trends"> Trends
+					<br>
+					<input type="checkbox" ng-model="mile_report_cities"> Cities
+				</div>
+		
+				<div class='col-md-6 checkbox_div'>
+					<h4 class='title'> Impressions Report</h4>
+					<input type="checkbox" ng-model="impression_report_trends"> Trends
+					<br>
+					<input type="checkbox" ng-model="impression_report_cities"> Cities
+				</div>
+				
+			</div>
+		 	<div class='row'>
+				<div class='col-md-6 checkbox_div'>
+					<h4 class='title'> Maps</h4>
+					<input type="checkbox"  ng-model="map_report"> Paths
+				</div>
+	
+				<div class='col-md-6 checkbox_div'>
+					<h4 class='title'> Stories&Pictures</h4>
+					<input type="checkbox"  ng-model="story_report"> Stories
+					<br>
+					<input type="checkbox"  ng-model="pic_report"> Pictures
+			
+				</div>
+			</div>
+			
+				<div class='row'>
+					<div class='col-md-6 checkbox_div'>
+						<h4 class='title'> Cover Page</h4>
+						<input type="checkbox"  ng-model="cover_report"> Cover Page
+					</div>
+				</div>
+				
+				<div class='row'>
+					<div class='col-md-4'>
+						<input class='datepicker form-control' id='start' placeholder="start"/></div>
+		
+						<div class='col-md-4'>
+							<input class='datepicker form-control' id='end'  placeholder="end"/>
+						</div>
+							<div class='col-md-4'>
+								<input type="submit" value="create" ng-click='generate()' class="blue-flat-button"/>
+							</div>
+						</div>
+					</div>
+			
+				</div>
+	
+				<div class='container'>
+					<div ng-controller='dragpicController'>
+					<div class='col-md-8 col-md-offset-2' >
+			
+						<h4>Pictures:</h4>
+						<div class='dropzone' id="dropzone">Drop your pictures here!</div>
+						
+						<div ng-repeat='image in uploadimages'>
+							<div class='uploadimages_area_singlepic'>
+								<img class='upload_image' ng-src="{{image}}">
+							</div>
+						</div>
+						
+					</div>
+					<div class='col-md-4 col-md-offset-4'>
+						<input type="submit" value="save" ng-click='upload_images()' class="blue-flat-button button_margin" >
+					</div>
+					</div>
+	 
+					<div  ng-controller='storyController'>
+						<div class='col-md-8 col-md-offset-2'>
+							<h4>Stories:</h4>
+							<textarea class="story_form form-control" ng-model="story" rows="4"></textarea>
+							
+						</div>
+						<div class='col-md-4 col-md-offset-4'>
+							<input type="submit" value="save" ng-click='upload_story()' class="blue-flat-button button_margin" >
+						</div>
+					</div>
+					
+					
+					
+				</div>
+		<div class='cover whole_page' ng-show="cover">
+			<div class='cover_center'>
+				<div class='cover_campaign_name'>{{current_campaign_name}}</div>
+				<div class='cover_carvertise_name'>Carvertise</div>
+			</div>
+		</div>
+	
+				<div class='report_area container' ng-controller='chartsController'>
+					
+					
+					
+					<div class='chart_area'>
+						
+						
+						<!-- Miles Report -->
+						<div class='whole_page' >
+							<div class='data_area' ng-show='mile_trend_report'>
+									<div class='chart_title'>
+										<i class="fa fa-line-chart"></i> Miles Line Chart
+									</div>
+									<div class='grid_1 grid '>
+										<span class='grid_header'>Total</span>
+										<div class='grid_date'>{{total}}</div>
+										<span class='unit'>Miles</span>
+									</div>
+									<div class='grid_2 grid'>
+										<span class='grid_header'>Average</span>
+										<div class='grid_date'>{{average}}</div>
+										<span class='unit'>Miles/day</span>
+									</div>
+							</div>
+							
+							<canvas id="mile_trendChart" width="100" height="100"></canvas>
+						</div>
+						<div class='whole_page' >
+							<div class='data_area' ng-show='mile_cities_report'>
+								<div class='chart_title'>
+									<i class="fa fa-bar-chart"></i> Miles Bar Chart
+								</div>
+							</div>
+							<canvas id="mile_cityChart" width="100" height="100"></canvas>
+						</div>
+						
+						<!-- Impressions Report -->
+						<div class='whole_page' >
+							<div class='data_area' ng-show='impressions_trend_report'>
+									<div class='chart_title'>
+										<i class="fa fa-line-chart"></i> Impressions Line Chart
+									</div>
+									<div class='grid_1 grid '>
+										<span class='grid_header'>Total</span>
+										<div class='grid_date'>{{total_impressions}}</div>
+										<span class='unit'>Impressions</span>
+									</div>
+									<div class='grid_2 grid'>
+										<span class='grid_header'>Average</span>
+										<div class='grid_date'>{{average_impressions}}</div>
+										<span class='unit'>Impressions/Day</span>
+									</div>
+							</div>
+							
+							<canvas id="impression_trendChart" width="100" height="100"></canvas>
+						</div>
+						<div class='whole_page' >
+							<div class='data_area' ng-show='impressions_cities_report'>
+								<div class='chart_title'>
+									<i class="fa fa-bar-chart"></i>  Impressions Bar Chart
+								</div>
+							</div>
+							<canvas id="impression_cityChart" width="100" height="100"></canvas>
+						</div>
+						
+					</div>
+					
+					<div class='pic_area whole_page' >
+					<div ng-controller='picturesController' id="sortable_picture">
+						<div class='single_pic_container' ng-repeat="image in images" ng-mouseover="hover(image.id)">
+							<div class='single_pic' >
+								<span ng-show="showdelete==image.id" ng-click='delete(image.id)' class="label label-danger delete_btn">Delete</span>
+								<img ng-src="{{image.url}}"/>
+							</div>
+							
+						</div>
+					</div>
+					
+					</div>
+				
+				
+					<div class='stories_area whole_page' >
+						<div ng-controller='storyController' id="sortable_story">
+							<div class='single_story_container' ng-repeat="story in stories" ng-mouseover="hover_story(story.id)">
+								<div class='single_story' >
+									<span ng-show="showdelete_story==story.id" ng-click='delete_story(story.id)' class="label label-danger delete_btn">Delete</span>
+									{{story.content}}
+									
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+				</div>
+
+				</div>
+	
+				<div class='middle_layer'>
+				</div>
+	
+				<div class='selector'>
+					<div class='row'>
+						<div class='col-md-9'>
+							<input class='form-control' id='search_bar' ng-blur='clean()' ng-focus='resume()' ng-model="inputstring" placeholder='campaign name' />
+							<ul class='usersearch_list'><li class='usersearch_item' ng-mousedown='select_campaign_name(campaign.name)' ng-repeat='campaign in searchcampaigns'>{{campaign.name}}</li></ul>
+						</div>
+						<div class='col-md-3'>
+							<input type="submit" value="submit" id='search_button' ng-click='submit_campaign()'  class="blue-flat-button" >
+						</div>
+					</div>
+		
+				</div>
+
+			<script>
+			    $(function() {
+			      $( "#sortable_picture" ).sortable();
+			      $( "#sortable_picture" ).disableSelection();
+			    });
+				
+				
+			    $(function() {
+			      $( "#sortable_story" ).sortable();
+			      $( "#sortable_story" ).disableSelection();
+			    });
+				
+			
+			$(function() {
+				$( ".datepicker" ).datepicker();
+				
+			});
+			</script>
+		</body>
+		</html>

@@ -12,7 +12,6 @@
 		
 		var startsearching = true;
 		$scope.$watch("inputstring", function(newValue, oldValue) {
-			
 			if (newValue.length > 0 && startsearching) {
 				console.log(newValue.length);
 					$scope.searchcampaigns = [];
@@ -107,8 +106,8 @@
 				datatype: "html",
 				data: dataString,
 				success: function(data) {
+					
 							var campaigns = $.parseJSON(data);
-					//alert(data);
 					$scope.campaigns = campaigns;
 					$scope.$digest();
 					//	alert(data);

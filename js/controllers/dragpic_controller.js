@@ -53,6 +53,29 @@
 		};
 		
 		
+		$scope.upload_images = function(){
+			if($scope.uploadimages.length == 0){
+				alert("No image");
+			}else{
+				
+			var data = {'campaignid':$scope.current_campaign_id,'images':$scope.uploadimages};
+
+			$.ajax({
+
+				type: "POST",
+				cache:  false ,
+				url: "data_access/push_images.php",
+
+				data: {result:JSON.stringify(data)},
+				success: function(data) {
+					alert(data);
+
+
+				}
+			})}
+		}
+		
+		
     }]);
  
 }());
