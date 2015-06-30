@@ -8,6 +8,17 @@ body{
 	background-color:#ecf0f1;
 	height:100%;
 	width:100%;
+	-webkit-print-color-adjust:exact;
+}
+
+@media print {
+	
+	body{
+		background-color:#ecf0f1;
+		height:100%;
+		width:100%;
+		-webkit-print-color-adjust:exact;
+	}
 }
 
 
@@ -208,7 +219,6 @@ ul
 .chart_area
 {
 	width:100%;
-	height:100%;
 }
 
 .data_area
@@ -289,6 +299,7 @@ ul
 	padding:60px 0px;
 	width:100%;
 	height:100%;
+	position:relative;
 }
 
 .unit
@@ -355,3 +366,8 @@ ul
 	
 }
 
+
+#tracking{
+ width: 100%;
+ height: 500px;
+}			

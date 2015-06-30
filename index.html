@@ -29,10 +29,18 @@
 	<script type="text/javascript" src="js/controllers/charts_controller.js"></script>
 
 	<script type="text/javascript" src="js/controllers/pictures_controller.js"></script>
+	<script type="text/javascript" src="js/controllers/maps_controller.js"></script>
 	
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/html2canvas.js"></script>
+
+	<script type="text/javascript" src="js/FileSaver.js"></script>
+         <script type="text/javascript" src="js/jspdf.js"></script>
+         <script type="text/javascript" src="js/jspdf.plugin.addimage.js"></script>
+       
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
 	
 	<link href="css/_main.css" rel="stylesheet">
  
@@ -103,8 +111,11 @@
 						</div>
 							<div class='col-md-4'>
 								<input type="submit" value="create" ng-click='generate()' class="blue-flat-button"/>
+								
 							</div>
+							
 						</div>
+						
 					</div>
 			
 				</div>
@@ -142,11 +153,16 @@
 					
 					
 				</div>
-		<div class='cover whole_page' ng-show="cover">
+				
+		<div class='cover whole_page ' id='cover_print'ng-show="cover">
 			<div class='cover_center'>
 				<div class='cover_campaign_name'>{{current_campaign_name}}</div>
 				<div class='cover_carvertise_name'>Carvertise</div>
 			</div>
+		</div>
+		<div class='row'>
+				<div class='col-md-4 col-md-offset-4'>
+			<input type="submit" value="cover_pdf" ng-click='print_cover_report()' class="blue-flat-button"/></div>
 		</div>
 	
 				<div class='report_area container' ng-controller='chartsController'>
@@ -157,7 +173,9 @@
 						
 						
 						<!-- Miles Report -->
-						<div class='whole_page' >
+						<div id="mile_report_print">
+							
+						<div class='whole_page' id='mile_report'>
 							<div class='data_area' ng-show='mile_trend_report'>
 									<div class='chart_title'>
 										<i class="fa fa-line-chart"></i> Miles Line Chart
@@ -185,7 +203,21 @@
 							<canvas id="mile_cityChart" width="100" height="100"></canvas>
 						</div>
 						
+						
+					</div>
+					<!-- Mile report print end -->
+					
+					
+					<div class='row'>
+							<div class='col-md-4 col-md-offset-4'>
+						<input type="submit" value="Miles_pdf" ng-click='print_miles_report()' class="blue-flat-button"/></div>
+					</div>
+					
+					<!-- Mile report end -->
+						
 						<!-- Impressions Report -->
+
+						<div id="impressions_report_print">
 						<div class='whole_page' >
 							<div class='data_area' ng-show='impressions_trend_report'>
 									<div class='chart_title'>
@@ -214,9 +246,48 @@
 							<canvas id="impression_cityChart" width="100" height="100"></canvas>
 						</div>
 						
+						
+					</div>
+					<!-- Impressions report print end -->
+					<div class='row'>
+							<div class='col-md-4 col-md-offset-4'>
+						<input type="submit" value="Impressions_pdf" ng-click='print_impressions_report()' class="blue-flat-button"/></div>
+					</div>
+					<!-- Impressions report end -->
+					
 					</div>
 					
-					<div class='pic_area whole_page' >
+					<!-- Charts area end -->
+					
+					
+					<!-- Maps report start -->
+					<div class='whole_page' >
+						<div ng-show='map_report'>
+						<div class='map_area' ng-controller='mapsController' >
+							 <div class="panel panel-default">
+							  <div class="panel-heading">
+							  <button class='btn btn-sm btn-default' ng-click ='dateleft()'><i class="fa fa-caret-left fa-lg"></i>
+							 <input type="text" name="start" id="pathdatepicker" ></input> 
+							 <button class='btn btn-sm btn-default' ng-click ='dateright()'><i class="fa fa-caret-right fa-lg"></i>
+
+							</h4>
+							  </div>
+						  </div>
+						    <div id="tracking" style='box-shadow: 0px 1px 5px #888888;'></div>
+						</div>
+					</div>
+					
+					</div>
+					<div class='row'>
+							<div class='col-md-4 col-md-offset-4'>
+						<input type="submit" value="maps_pdf" ng-click='print_maps_report()' class="blue-flat-button"/></div>
+					</div>
+					<!-- Maps report end -->
+					
+					
+					<!-- pictures -->
+					<div class=' whole_page ' id='pictures_print'>
+						<div class='pic_area' ng-show='picture_report'>
 					<div ng-controller='picturesController' id="sortable_picture">
 						<div class='single_pic_container' ng-repeat="image in images" ng-mouseover="hover(image.id)">
 							<div class='single_pic' >
@@ -226,11 +297,18 @@
 							
 						</div>
 					</div>
-					
+				</div>
 					</div>
+					<div class='row'>
+							<div class='col-md-4 col-md-offset-4'>
+						<input type="submit" value="pictures_pdf" ng-click='print_pictures_report()' class="blue-flat-button"/></div>
+					</div>
+					<!-- pictures end -->
+					
+					<!-- stories -->
 				
-				
-					<div class='stories_area whole_page' >
+					<div class=' whole_page ' id='stories_print' ng-show='story_report'>
+						<div class='stories_area' ng-show='story_report'>
 						<div ng-controller='storyController' id="sortable_story">
 							<div class='single_story_container' ng-repeat="story in stories" ng-mouseover="hover_story(story.id)">
 								<div class='single_story' >
@@ -241,11 +319,24 @@
 							</div>
 							
 						</div>
-						
 					</div>
+					</div>
+					<div class='row'>
+							<div class='col-md-4 col-md-offset-4'>
+						<input type="submit" value="stories_pdf" ng-click='print_stories_report()' class="blue-flat-button"/></div>
+					</div>
+					
+					<!-- stroies end -->
+				
+					<!-- <div id='pdf_canvas'>
+						PDF
+					</div> -->
 				</div>
+				
+				
 
 				</div>
+				
 	
 				<div class='middle_layer'>
 				</div>
@@ -264,6 +355,7 @@
 				</div>
 
 			<script>
+				
 			    $(function() {
 			      $( "#sortable_picture" ).sortable();
 			      $( "#sortable_picture" ).disableSelection();
