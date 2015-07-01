@@ -67,8 +67,8 @@
  		                        onrendered: function(canvas) {
  		                      	var myImage = canvas.toDataURL( 'image/JPEG');
 								
- 							    var doc = new jsPDF('p', 'mm');
- 							                  doc.addImage(myImage, 'JPEG', 5, 5,200,200);
+ 							    var doc = new jsPDF('p', 'mm',[210,297]);
+ 							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
  							                 doc.save('miles.pdf');
  	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
 						
@@ -83,8 +83,8 @@
  		                        onrendered: function(canvas) {
  		                      	var myImage = canvas.toDataURL( 'image/JPEG');
 								
- 							    var doc = new jsPDF('p', 'mm');
- 							                  doc.addImage(myImage, 'JPEG', 5, 5,200,200);
+ 							    var doc = new jsPDF('p', 'mm',[210,297]);
+ 							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
  							                 doc.save('impressions.pdf');
  	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
 						
@@ -147,8 +147,8 @@
  		                        onrendered: function(canvas) {
  		                      	var myImage = canvas.toDataURL( 'image/JPEG');
 								
- 							    var doc = new jsPDF('p', 'mm');
- 							                  doc.addImage(myImage, 'JPEG', 0, 0,200,150);
+ 							    var doc = new jsPDF('p', 'mm', [210,297]);
+ 							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
  							                 doc.save('cover.pdf');
  	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
 						

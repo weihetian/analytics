@@ -218,7 +218,7 @@ ul
 
 .chart_area
 {
-	width:100%;
+	width:2000px;
 }
 
 .data_area
@@ -229,11 +229,14 @@ ul
 .grid
 {
 	padding:2px;
-	border-top:4px solid #2980b9;
+	border-top:8px solid #2980b9;
+	border-bottom:2px solid #bdc3c7;
+	border-left:2px solid #bdc3c7;
+	border-right:2px solid #bdc3c7;
 	margin-right:50px;
 	float:right;
-	width:150px;
-	height:80px;
+	width:300px;
+	height:180px;
 	background-color:white;
 	box-shadow:0 0 5px #bdc3c7;
 	
@@ -241,13 +244,13 @@ ul
 
 .grid_header
 {
-	font-size:15px;
+	font-size:30px;
 }
 
 .grid_date
 {
 	
-	font-size:25px;
+	font-size:50px;
 	font-weight:bold;
 	text-align:center;
 }
@@ -257,7 +260,7 @@ ul
 	font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
 
 	font-weight: 100;
-	font-size:50px;
+	font-size:100px;
 	
 }
 
@@ -269,7 +272,30 @@ ul
 	font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
 
 	font-weight: 100;
-	
+	width:2100px;
+	height:2970px;
+}
+
+#mile_report_print
+{
+	position:relative;
+	width:2100px;
+	height:2970px;
+	padding:50px;
+}
+
+#impressions_report_print
+{
+	position:relative;
+	width:2100px;
+	height:2970px;
+	padding:50px;
+}
+
+.single_chart
+{
+	margin-top:100px;
+	margin-bottom:100px;
 }
 
 .cover_center
@@ -284,14 +310,14 @@ ul
 .cover_campaign_name
 {
 	color:white;
-	font-size:60px;
+	font-size:120px;
 	border-bottom:3px solid white;
 }
 
 .cover_carvertise_name
 {
 	color:#6199AE;
-	font-size:35px;
+	font-size:70px;
 }
 
 .whole_page
@@ -304,7 +330,7 @@ ul
 
 .unit
 {
-	font-size:13px;
+	font-size:25px;
 	float:right;
 }
 

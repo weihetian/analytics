@@ -154,7 +154,7 @@
 					
 				</div>
 				
-		<div class='cover whole_page ' id='cover_print'ng-show="cover">
+		<div class='cover  ' id='cover_print'ng-show="cover">
 			<div class='cover_center'>
 				<div class='cover_campaign_name'>{{current_campaign_name}}</div>
 				<div class='cover_carvertise_name'>Carvertise</div>
@@ -175,12 +175,12 @@
 						<!-- Miles Report -->
 						<div id="mile_report_print">
 							
-						<div class='whole_page' id='mile_report'>
+						<div class='single_chart' id='mile_report'>
 							<div class='data_area' ng-show='mile_trend_report'>
 									<div class='chart_title'>
 										<i class="fa fa-line-chart"></i> Miles Line Chart
 									</div>
-									<div class='grid_1 grid '>
+									<div class='grid_1 grid'>
 										<span class='grid_header'>Total</span>
 										<div class='grid_date'>{{total}}</div>
 										<span class='unit'>Miles</span>
@@ -194,7 +194,7 @@
 							
 							<canvas id="mile_trendChart" width="100" height="100"></canvas>
 						</div>
-						<div class='whole_page' >
+						<div class='single_chart' >
 							<div class='data_area' ng-show='mile_cities_report'>
 								<div class='chart_title'>
 									<i class="fa fa-bar-chart"></i> Miles Bar Chart
@@ -218,7 +218,7 @@
 						<!-- Impressions Report -->
 
 						<div id="impressions_report_print">
-						<div class='whole_page' >
+						<div class='single_chart' >
 							<div class='data_area' ng-show='impressions_trend_report'>
 									<div class='chart_title'>
 										<i class="fa fa-line-chart"></i> Impressions Line Chart
@@ -237,7 +237,7 @@
 							
 							<canvas id="impression_trendChart" width="100" height="100"></canvas>
 						</div>
-						<div class='whole_page' >
+						<div class='single_chart' >
 							<div class='data_area' ng-show='impressions_cities_report'>
 								<div class='chart_title'>
 									<i class="fa fa-bar-chart"></i>  Impressions Bar Chart
@@ -276,7 +276,6 @@
 						    <div id="tracking" style='box-shadow: 0px 1px 5px #888888;'></div>
 						</div>
 					</div>
-					
 					</div>
 					<div class='row'>
 							<div class='col-md-4 col-md-offset-4'>

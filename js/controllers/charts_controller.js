@@ -45,12 +45,13 @@
 		
 		
 			var width = $(".chart_area").width();
-			 document.getElementById('mile_trendChart').width = width;
-			 document.getElementById('mile_trendChart').height = 400;
+			 document.getElementById('mile_trendChart').width = width-100;
+			 document.getElementById('mile_trendChart').height = 700;
 			options = {
 	               pointDot : false,
 	               pointHitDetectionRadius : 2,
 	               scaleShowGridLines : true,
+				scaleFontSize: 25,
 	               bezierCurve : true,
 				pointDot : true
    
@@ -114,11 +115,12 @@
 		
 		
 			var width = $(".chart_area").width();
-			 document.getElementById('mile_cityChart').width = width;
-			 document.getElementById('mile_cityChart').height = 500;
+			 document.getElementById('mile_cityChart').width = width-100;
+			 document.getElementById('mile_cityChart').height = 800;
 			options = {
                 datasetStrokeWidth : 1,
                scaleShowGridLines : true,
+				scaleFontSize: 25,
                 barValueSpacing:8
 	            };
 				
@@ -177,12 +179,13 @@
 		
 		
 			var width = $(".chart_area").width();
-			 document.getElementById('impression_trendChart').width = width;
-			 document.getElementById('impression_trendChart').height = 400;
+			 document.getElementById('impression_trendChart').width = width-100;
+			 document.getElementById('impression_trendChart').height = 700;
 			options = {
 	               pointDot : false,
 	               pointHitDetectionRadius : 2,
 	               scaleShowGridLines : true,
+				scaleFontSize: 25,
 	               bezierCurve : true,
 				pointDot : true
    
@@ -247,11 +250,12 @@
 		
 		
 			var width = $(".chart_area").width();
-			 document.getElementById('impression_cityChart').width = width;
-			 document.getElementById('impression_cityChart').height = 500;
+			 document.getElementById('impression_cityChart').width = width-100;
+			 document.getElementById('impression_cityChart').height = 800;
 			options = {
                 datasetStrokeWidth : 1,
                scaleShowGridLines : true,
+				scaleFontSize: 25,
                 barValueSpacing:8
 	            };
 				
