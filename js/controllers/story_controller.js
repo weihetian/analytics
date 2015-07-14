@@ -6,8 +6,11 @@
 		$scope.showdelete_story;
 		
 		$scope.$watch("stories_data", function(){
+			if($scope.stories_data!=undefined){
 			$scope.stories = $scope.stories_data;
+  	  	  $scope.$parent.$parent.stories_done=true;
 			$scope.$digest();
+		}
 		})
 		
 		
@@ -15,7 +18,10 @@
 			$scope.showdelete_story = id;
 			$scope.$digest();
 		}
-		
+		$scope.hover_story_end=function(){
+			$scope.showdelete_story = -1;
+			$scope.$digest();
+		}
 		
 		var removeByAttr = function(arr, attr, value){
 		    var i = arr.length;

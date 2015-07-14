@@ -12,9 +12,12 @@
 
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
+	
 	<script src="js/Chart.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -29,11 +32,11 @@
 	<script type="text/javascript" src="js/controllers/charts_controller.js"></script>
 
 	<script type="text/javascript" src="js/controllers/pictures_controller.js"></script>
+	<script type="text/javascript" src="js/controllers/map_picker_controller.js"></script>
 	<script type="text/javascript" src="js/controllers/maps_controller.js"></script>
 	
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	
     <script type="text/javascript" src="js/html2canvas.js"></script>
 
 	<script type="text/javascript" src="js/FileSaver.js"></script>
@@ -57,6 +60,7 @@
 	</div>
 	
 	<div class='main' ng-controller='checkboxController'>
+		
 		<div class='container'>
 			<div class="col-md-8 col-md-offset-2 page-header header">
 				<h1>Campaign: <span class='campaign_name'>{{current_campaign_name}}</span></h1>
@@ -84,6 +88,9 @@
 				<div class='col-md-6 checkbox_div'>
 					<h4 class='title'> Maps</h4>
 					<input type="checkbox"  ng-model="map_report"> Paths
+					<div ng-show='map_report'>
+						<input class='datepicker form-control' id='pathdate' placeholder="Enter Date Here"/>
+					</div>
 				</div>
 	
 				<div class='col-md-6 checkbox_div'>
@@ -154,6 +161,55 @@
 					
 				</div>
 				
+				<div class='container pdf_btn_area'>
+					<h3><i class="fa fa-download"></i> Downloads</h3>
+					<div class='pdf_single_btn_area col-md-8 col-md-offset-2'>
+						<div class='col-md-3 ' ng-show='!cover_done'>
+						<i class="fa fa-cog fa-spin"></i>
+					</div>
+						<div class='col-md-3 ' ng-show='cover_done'>
+					<input type="submit" value="cover_pdf" ng-click='print_cover_report()' class="blue-flat-button"/></div>
+					
+						<div class='col-md-3 ' ng-show='!miles_done'>
+						<i class="fa fa-cog fa-spin"></i>
+					</div>
+							<div class='col-md-3' ng-show='miles_done'>
+						<input type="submit" value="Miles_pdf" ng-click='print_miles_report()' class="blue-flat-button"/></div>
+						
+							<div class='col-md-3 ' ng-show='!impressions_done'>
+							<i class="fa fa-cog fa-spin"></i>
+						</div>
+						<div class='col-md-3 ' ng-show='impressions_done'>
+					<input type="submit" value="Impressions_pdf" ng-click='print_impressions_report()' class="blue-flat-button"/></div>
+					
+						<div class='col-md-3 ' ng-show='!maps_done'>
+						<i class="fa fa-cog fa-spin"></i>
+					</div>
+						<div class='col-md-3 ' ng-show='maps_done'>
+					<input type="submit" value="Maps" ng-click='print_maps_report()' class="blue-flat-button"/></div>
+						
+						<div class='col-md-3 ' ng-show='!pictures_done'>
+						<i class="fa fa-cog fa-spin"></i>
+					</div>
+						<div class='col-md-3 ' ng-show='pictures_done'>
+					<input type="submit" value="Pictures" ng-click='print_pictures_report()' class="blue-flat-button"/></div>
+					
+						<div class='col-md-3 ' ng-show='!stories_done'>
+						<i class="fa fa-cog fa-spin"></i>
+					</div>
+						<div class='col-md-3 ' ng-show='stories_done'>
+					<input type="submit" value="Stories" ng-click='print_stories_report()' class="blue-flat-button"/></div>
+				</div>
+				<div class='pdf_whole_btn_area col-md-8 col-md-offset-2' ng-show='!(cover_done&&miles_done&&impressions_done&&maps_done&&stories_done&&pictures_done)'>
+					<i class="fa fa-cog fa-spin"></i>
+				</div>
+				<div class='pdf_whole_btn_area col-md-8 col-md-offset-2' ng-show='cover_done&&miles_done&&impressions_done&&maps_done&&stories_done&&pictures_done'>
+					<input type="submit" value="Full PDF" ng-click='print_full_pdf()' class="blue-flat-button"/>
+				</div>
+				</div>
+				
+	<div class='hide_area' id="hide_area">
+		<div class='hide_container'>
 		<div class='cover  ' id='cover_print'ng-show="cover">
 			<div class='cover_center'>
 				<div class='cover_campaign_name'>{{current_campaign_name}}</div>
@@ -213,6 +269,7 @@
 						<input type="submit" value="Miles_pdf" ng-click='print_miles_report()' class="blue-flat-button"/></div>
 					</div>
 					
+					
 					<!-- Mile report end -->
 						
 						<!-- Impressions Report -->
@@ -267,13 +324,16 @@
 							 <div class="panel panel-default">
 							  <div class="panel-heading">
 							  <button class='btn btn-sm btn-default' ng-click ='dateleft()'><i class="fa fa-caret-left fa-lg"></i>
-							 <input type="text" name="start" id="pathdatepicker" ></input> 
+							 <input type="text"  name="start" id="pathdatepicker" ></input> 
 							 <button class='btn btn-sm btn-default' ng-click ='dateright()'><i class="fa fa-caret-right fa-lg"></i>
-
-							</h4>
 							  </div>
 						  </div>
-						    <div id="tracking" style='box-shadow: 0px 1px 5px #888888;'></div>
+						  <div id='maps_print'>
+								<div class='chart_title'>
+									<i class="fa fa-map-marker"></i> Maps
+								</div>
+						 	   <div id="tracking" style='box-shadow: 0px 1px 5px #888888;'></div>
+							</div>
 						</div>
 					</div>
 					</div>
@@ -285,10 +345,13 @@
 					
 					
 					<!-- pictures -->
-					<div class=' whole_page ' id='pictures_print'>
+					<div class='  ' id='pictures_print'>
+						<div class='chart_title'>
+							<i class="fa fa-picture-o"></i> Pictures
+						</div>
 						<div class='pic_area' ng-show='picture_report'>
 					<div ng-controller='picturesController' id="sortable_picture">
-						<div class='single_pic_container' ng-repeat="image in images" ng-mouseover="hover(image.id)">
+						<div class='single_pic_container' ng-repeat="image in images" ng-mouseover="hover(image.id)" ng-mouseleave='hover_end()'>
 							<div class='single_pic' >
 								<span ng-show="showdelete==image.id" ng-click='delete(image.id)' class="label label-danger delete_btn">Delete</span>
 								<img ng-src="{{image.url}}"/>
@@ -306,10 +369,13 @@
 					
 					<!-- stories -->
 				
-					<div class=' whole_page ' id='stories_print' ng-show='story_report'>
+					<div class='' id='stories_print' ng-show='story_report'>
+						<div class='chart_title'>
+							<i class="fa fa-users"></i> Stories
+						</div>
 						<div class='stories_area' ng-show='story_report'>
 						<div ng-controller='storyController' id="sortable_story">
-							<div class='single_story_container' ng-repeat="story in stories" ng-mouseover="hover_story(story.id)">
+							<div class='single_story_container' ng-repeat="story in stories" ng-mouseover="hover_story(story.id)" ng-mouseleave='hover_story_end()'>
 								<div class='single_story' >
 									<span ng-show="showdelete_story==story.id" ng-click='delete_story(story.id)' class="label label-danger delete_btn">Delete</span>
 									{{story.content}}
@@ -335,11 +401,17 @@
 				
 
 				</div>
-				
+			</div>
+		</div>
 	
-				<div class='middle_layer'>
+				<div class='middle_layer' ng-click='cancel()'>
 				</div>
-	
+				
+				<div class='loading'>
+					
+				</div>
+				
+				
 				<div class='selector'>
 					<div class='row'>
 						<div class='col-md-9'>
@@ -368,6 +440,8 @@
 				
 			
 			$(function() {
+				//	$( ".datepicker" ).datepicker('setDate', new Date(2008,9,03));
+				//	alert();
 				$( ".datepicker" ).datepicker();
 				
 			});

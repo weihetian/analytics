@@ -2,26 +2,29 @@
  
     var app= angular.module('analytics');
     app.controller('mapsController', ['$scope', function ($scope) {
-		
+
+	 
+	//	$scope.maps_done=true;
 		
 		function update_maps(){
+			
 		    var mapOptions = {
-   
+
 		    scrollwheel: false,
 		      zoom: 11,
-			styles:[{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"visibility":"on"},{"color":"#f3f4f4"}]},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"weight":0.9},{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#83cead"}]},{"featureType":"road","elementType":"all","stylers":[{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"on"},{"color":"#fee379"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"visibility":"on"},{"color":"#fee379"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#7fc8ed"}]}],
-				
+			styles:[{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}],
+
 		      center: new google.maps.LatLng(39.739077, -75.540986),
 		      mapTypeId: google.maps.MapTypeId.ROADMAP
 		    };
 		  map = new google.maps.Map(document.getElementById('tracking'),
 		        mapOptions);
-				
-				
+
+
 				var startdate = $scope.map_start_date;
-				
-				
-				var start = $( "#pathdatepicker" ).datepicker( "getDate" );
+
+
+				var start = $( "#pathdate" ).datepicker( "getDate" );
 
 
 
@@ -56,10 +59,10 @@
 				var startdate = starty+"-"+startm+"-"+startd;
 
 				var enddate = endy+"-"+endm+"-"+endd;
-				
+
 				var dataString='campaignid='+$scope.current_campaign_id+"&start="+startdate+"&end="+enddate;
 				//alert(dataString);
-				//alert(dataString);
+			//	alert(dataString);
 				$.ajax({
 					type: "POST",
 					url: "data_access/pull_path.php",
@@ -67,50 +70,51 @@
 					data: dataString,
 					success: function(data) {
 						var json=$.parseJSON(data);
-						for (var i = 0; i < json.length; i++) { 
-							
+						console.log(json);
+						for (var i = 0; i < json.length; i++) {
+
 
 							var trackinglocations=[];
 							var singledata=$.parseJSON(json[i]);
-							
-							for(var j = 0; j<singledata.features.length;j++)
-							{
-								console.log(singledata.features);
-								
-								
-								 var point =  new google.maps.LatLng(singledata.features[j].geometry.coordinates[1],parseFloat(singledata.features[j].geometry.coordinates[0]));
-								trackinglocations.push(point);
+							if(singledata.features!=undefined){
+								for(var j = 0; j<singledata.features.length;j++)
+								{
+									//console.log(singledata.features);
+
+
+									var point =  new google.maps.LatLng(singledata.features[j].geometry.coordinates[1],parseFloat(singledata.features[j].geometry.coordinates[0]));
+									trackinglocations.push(point);
+								}
 							}
-//
-// 							alert();
 						  var polyline = new google.maps.Polyline({
 						    path: trackinglocations,
 						    geodesic: true,
 						    strokeColor: "#c0392b",
 						    strokeOpacity: 1,
-						    strokeWeight: 3,
+						    strokeWeight: 6,
 						    map:map
 						  });
-							
+						 
 						}
-						//alert(data);
-						// $scope.mile_trend_report = true;
-// 						$scope.mile_trendsjson = $.parseJSON(data);
-// 						 $scope.$digest();
+				  	  $scope.$parent.$parent.maps_done=true;
+				  	  $scope.$apply();
+  	  				 // $scope.$digest();
 					}
+				 
 				})
 		}
-		
+
 		$scope.$watch("map_start_date", function(){
 			if($scope.map_start_date!=undefined){
+			//	alert();
 			update_maps();
-			
+
 		}
 		})
-		
+
 	    $(function() {
 			$( "#pathdatepicker" ).datepicker();
-			
+
 	    	// var cid = $('#campaignstart').val();
 	    	// var date = new Date(cid);
 	    	// var day = date.getDate()+1;
@@ -118,26 +122,26 @@
 	    	//   var year = date.getFullYear();
 	    	// 	       $( "#pathdatepicker" ).datepicker({ dateFormat: 'mm/dd/yy'}).datepicker("setDate", new Date(year,month,day));
 	     });
-		
+
 		$scope.dateleft=function(){
 			var current = $( "#pathdatepicker" ).datepicker( "getDate" );
-			  current.setDate(current.getDate()-1); 
+			  current.setDate(current.getDate()-1);
 			 $( "#pathdatepicker" ).datepicker("setDate", current);
-			 
+
 			 $scope.map_start_date= $( "#pathdatepicker" ).val();
 		}
-		
-		
+
+
 		$scope.dateright=function(){
 			var current = $( "#pathdatepicker" ).datepicker( "getDate" );
 			var d = new Date();
-	
+
 			if(current.getMonth()==d.getMonth() && current.getDate() < d.getDate()-1){
-			  current.setDate(current.getDate()+1); 
+			  current.setDate(current.getDate()+1);
 			  $( "#pathdatepicker" ).datepicker("setDate", current);
 		 	  $scope.map_start_date= $( "#pathdatepicker" ).val();
 	 	 	}else if(current.getMonth()<d.getMonth() ){
-	 		   	current.setDate(current.getDate()+1); 
+	 		   	current.setDate(current.getDate()+1);
 				$( "#pathdatepicker" ).datepicker("setDate", current);
 			 $scope.map_start_date= $( "#pathdatepicker" ).val();
 			}

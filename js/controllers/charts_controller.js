@@ -8,6 +8,9 @@
 		
 		
 		$scope.$watch("mile_trendsjson", function(){
+			// alert($scope.mile_trendsjson);
+			// var a = document.getElementById("hide_area");
+	// 		a.style.display = "block";
 			if($scope.mile_trendsjson!=undefined){
 			
 			var keys = [];
@@ -44,10 +47,12 @@
 			var ctx = document.getElementById("mile_trendChart").getContext("2d");
 		
 		
-			var width = $(".chart_area").width();
-			 document.getElementById('mile_trendChart').width = width-100;
+			///var width = $(".chart_area").width();
+			 document.getElementById('mile_trendChart').width = 2000-100;
 			 document.getElementById('mile_trendChart').height = 700;
 			options = {
+
+				   animation: false,
 	               pointDot : false,
 	               pointHitDetectionRadius : 2,
 	               scaleShowGridLines : true,
@@ -61,19 +66,25 @@
 			
 			 mile_trends_linechart = new Chart(ctx).Line(lineChartData, options);
 			 mile_trends_linechart_created = true;
+			 	 $scope.$parent.miles_done=(mile_cities_barchart_created&&mile_trends_linechart_created);
 			  $scope.$digest();
 				// alert();
 				//  alert(keys);
 				//  				alert(values);
 // 				alert(num);
 		}
+		// a.style.display = "none";
 		});
+		
+		
 		
 		
 		var mile_cities_barchart;
 		var mile_cities_barchart_created=false;
 		
 		$scope.$watch("mile_citiesjson", function(){
+			// var a = document.getElementById("hide_area");
+	// 		a.style.display = "block";
 			if($scope.mile_citiesjson!=undefined){
 			
 			var keys = [];
@@ -114,10 +125,12 @@
 			var ctx = document.getElementById("mile_cityChart").getContext("2d");
 		
 		
-			var width = $(".chart_area").width();
-			 document.getElementById('mile_cityChart').width = width-100;
+			//var width = $(".chart_area").width();
+			 document.getElementById('mile_cityChart').width = 2000-100;
 			 document.getElementById('mile_cityChart').height = 800;
 			options = {
+
+				   animation: false,
                 datasetStrokeWidth : 1,
                scaleShowGridLines : true,
 				scaleFontSize: 25,
@@ -126,11 +139,14 @@
 				
 			 mile_cities_barchart = new Chart(ctx).Bar(lineChartData, options);
 			 mile_cities_barchart_created = true;
+			 $scope.$parent.miles_done=(mile_cities_barchart_created&&mile_trends_linechart_created);
+			 $scope.$digest();
 				// alert();
 				//  alert(keys);
 				//  				alert(values);
 // 				alert(num);
 		}
+			// a.style.display = "none";
 		});
 	
 	
@@ -178,10 +194,11 @@
 			var ctx = document.getElementById("impression_trendChart").getContext("2d");
 		
 		
-			var width = $(".chart_area").width();
-			 document.getElementById('impression_trendChart').width = width-100;
+			//var width = $(".chart_area").width();
+			 document.getElementById('impression_trendChart').width = 2000-100;
 			 document.getElementById('impression_trendChart').height = 700;
 			options = {
+				   animation: false,
 	               pointDot : false,
 	               pointHitDetectionRadius : 2,
 	               scaleShowGridLines : true,
@@ -195,6 +212,9 @@
 			
 			 impressions_trends_linechart = new Chart(ctx).Line(lineChartData, options);
 			 impressions_trends_linechart_created = true;
+			
+			 $scope.$parent.impressions_done=(impressions_trends_linechart_created&&impressions_cities_barchart_created);
+			// alert($scope.$parent.impressions_done);
 			  $scope.$digest();
 				// alert();
 				//  alert(keys);
@@ -206,6 +226,8 @@
 		
 		var impressions_cities_barchart;
 		var impressions_cities_barchart_created=false;
+		
+		
 		
 		$scope.$watch("impressions_citiesjson", function(){
 
@@ -249,10 +271,12 @@
 			var ctx = document.getElementById("impression_cityChart").getContext("2d");
 		
 		
-			var width = $(".chart_area").width();
-			 document.getElementById('impression_cityChart').width = width-100;
+		//	var width = $(".chart_area").width();
+			 document.getElementById('impression_cityChart').width = 2000-100;
 			 document.getElementById('impression_cityChart').height = 800;
 			options = {
+
+				   animation: false,
                 datasetStrokeWidth : 1,
                scaleShowGridLines : true,
 				scaleFontSize: 25,
@@ -261,6 +285,10 @@
 				
 			 impressions_cities_barchart = new Chart(ctx).Bar(lineChartData, options);
 			 impressions_cities_barchart_created = true;
+			 
+			 $scope.$parent.impressions_done=(impressions_trends_linechart_created&&impressions_cities_barchart_created);
+			// alert($scope.$parent.impressions_done);
+			 $scope.$digest();
 				// alert();
 				//  alert(keys);
 				//  				alert(values);

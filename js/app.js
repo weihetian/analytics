@@ -4,7 +4,23 @@
 
 	app.controller('selectorController',function($scope){
 		
-		 $("html, body").animate({ scrollTop: 0 }, 800);
+		//buttons done check
+		$scope.cover_done = false;
+		$scope.miles_done = false;
+		$scope.impressions_done = false;
+		$scope.maps_done = false;
+		$scope.pictures_done = false;
+		$scope.stories_done = false;
+		
+		
+		$scope.cancel = function(){
+			$('.middle_layer').hide();
+			$('.selector').hide();
+			$('.map_selector').hide();
+			$('.pdf_btn_area').hide();
+		}
+		
+		// $("html, body").animate({ scrollTop: 0 }, 800);
 		
 		$scope.campaigns= Array();
 		$scope.current_campaign_name;
@@ -88,7 +104,7 @@
 			
 			
 			$scope.cancel_select_campaign = function(){
-				 $("html, body").animate({ scrollTop: 0 }, 800);
+			//	 $("html, body").animate({ scrollTop: 0 }, 800);
 				$('.middle_layer').hide();
 				$('.selector').hide();
 			}

@@ -7,8 +7,11 @@
 		
 		
 		$scope.$watch("images_data", function(){
+			if($scope.images_data!=undefined){
 			$scope.images = $scope.images_data;
+	  	  $scope.$parent.$parent.pictures_done=true;
 			$scope.$digest();
+		}
 		})
 		
 		
@@ -17,6 +20,10 @@
 			$scope.$digest();
 		}
 		
+		$scope.hover_end = function(){
+			$scope.showdelete = -1;
+			$scope.$digest();
+		}
 		
 		var removeByAttr = function(arr, attr, value){
 		    var i = arr.length;

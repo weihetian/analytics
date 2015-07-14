@@ -16,7 +16,9 @@ if (mysqli_connect_errno())
   $theresult = Array();
   
   
-  $sql = "SELECT * FROM device INNER JOIN campaign ON `campaign`.`id`=`device`.`campaignid` WHERE `device`.`campaignid`=15";
+  $sql = "SELECT * FROM device INNER JOIN campaign ON `campaign`.`id`=`device`.`campaignid` WHERE `device`.`campaignid`='$campaignid'";
+  
+  // echo $sql;
   
 
   $result=mysqli_query($con,$sql)or die("Error: ".mysqli_error($con));
