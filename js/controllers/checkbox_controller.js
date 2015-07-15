@@ -24,13 +24,23 @@
 		$scope.picture_report = false;
 		
 		
+		$scope.pdf_pages = 0;
+		
+		
 		$scope.start_generating = false;
 		
+		var getorder=function(){
+			$scope.pdf_pages++;
+			return $scope.pdf_pages;
+		}
+		var cover_inorder=false;
+		var miles_inorder = false;
 		
-		
-		
-		$scope.map_start_date;
-		
+		var impressions_inorder=false;
+		var maps_inorder=false;
+		var pictures_inorder=false;
+		var stories_inorder=false;
+			
 		
 		// $scope.pdf_done=false;
 			
@@ -61,6 +71,8 @@
 // 								             // window.open(myImage);
 // 		                        }
 // 		 });
+
+
  		html2canvas($('#mile_report_print'), {
 			  				background :'#FFFFFF',
  		                        onrendered: function(canvas) {
@@ -78,7 +90,11 @@
 	}
 	
 	$scope.print_miles_report = function(){
+		if(!miles_inorder){
 
+			miles_inorder=true;
+		$(".miles_order").html(getorder());
+		$(".miles_order").show();
 		// var a = document.getElementById("hide_area");
 	// 	a.style.display = "block";
  		html2canvas($('#mile_report_print'), {
@@ -88,7 +104,10 @@
 								doc.addPage();
  							//    var doc = new jsPDF('p', 'mm',[210,297]);
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
-											  alert();
+											  $(".miles_btn").removeClass('blue-flat-button');
+											  $(".miles_btn").addClass('gray-flat-button');
+											  
+											//  alert();
  							      //           doc.save('miles.pdf');
 
 									 		// a.style.display = "none";
@@ -97,12 +116,18 @@
  								        //      window.open(myImage);
  		                        }
  		 });
+	 }
 	}
 	
 	$scope.print_impressions_report = function(){
 		//
 		// var a = document.getElementById("hide_area");
 		// a.style.display = "block";
+		if(!impressions_inorder){
+
+			impressions_inorder=true;
+		$(".impressions_order").html(getorder());
+		$(".impressions_order").show();
  		html2canvas($('#impressions_report_print'), {
 			  				background :'#FFFFFF',
  		                        onrendered: function(canvas) {
@@ -110,7 +135,9 @@
 								doc.addPage();
  							//    var doc = new jsPDF('p', 'mm',[210,297]);
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
-											  alert();
+											  $(".impressions_btn").removeClass('blue-flat-button');
+											  $(".impressions_btn").addClass('gray-flat-button');
+											  
  							     //            doc.save('impressions.pdf');
 											 	// a.style.display = "none";
  	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
@@ -118,6 +145,7 @@
  								        //      window.open(myImage);
  		                        }
  		 });
+	 }
 	}
 	
 	$scope.show_maps_sample = function(){
@@ -142,6 +170,11 @@
 	}
 	
 	$scope.print_maps_report = function(){
+		if(!maps_inorder){
+
+   		 maps_inorder=true;
+		$(".maps_order").html(getorder());
+		$(".maps_order").show();
 		html2canvas($('#maps_print'), {
 			background :'#FFFFFF',
 		                        useCORS: true,
@@ -150,16 +183,24 @@
 								doc.addPage();
 							 //   var doc = new jsPDF('p', 'mm',[210,297]);
 							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
-											  alert();
+											  $(".maps_btn").removeClass('blue-flat-button');
+											  $(".maps_btn").addClass('gray-flat-button');
+											 
 							    //              doc.save('maps.pdf');
 	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
 
 								             // window.open(myImage);
 		                        }
 		 });
+	 }
 	}
 	
 	$scope.print_pictures_report=function(){
+		if(!pictures_inorder){
+
+			pictures_inorder=true;
+		$(".pictures_order").html(getorder());
+		$(".pictures_order").show();
  		html2canvas($('#pictures_print'), {
 			  				background :'#FFFFFF',
  		                        onrendered: function(canvas) {
@@ -167,18 +208,26 @@
 								doc.addPage();
  							  //  var doc = new jsPDF('p', 'mm',[210,297]);
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
-											  alert();
+											  $(".pictures_btn").removeClass('blue-flat-button');
+											  $(".pictures_btn").addClass('gray-flat-button');
+											  
  							   //              doc.save('pictures.pdf');
  	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
 						
  								        //      window.open(myImage);
  		                        }
  		 });
+	 }
 	}
 	
 	$scope.print_stories_report=function(){
 		// var a = document.getElementById("hide_area");
 	// 	a.style.display = "block";
+	if(!stories_inorder){
+
+		stories_inorder=true;
+	$(".stories_order").html(getorder());
+	$(".stories_order").show();
  		html2canvas($('#stories_print'), {
 			  				background :'#FFFFFF',
  		                        onrendered: function(canvas) {
@@ -186,7 +235,9 @@
 								doc.addPage();
  							 //   var doc = new jsPDF('p', 'mm',[210,297]);
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
-											  alert();
+											  $(".stories_btn").removeClass('blue-flat-button');
+											  $(".stories_btn").addClass('gray-flat-button');
+											  
  							 //                doc.save('stores.pdf');
 											    // a.style.display = "none";
  	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
@@ -194,12 +245,18 @@
  								        //      window.open(myImage);
  		                        }
  		 });
+	 }
 	}
 	
 	$scope.print_cover_report = function(){
 
 		// var a = document.getElementById("hide_area");
 // 		a.style.display = "block";
+if(!cover_inorder){
+
+    cover_inorder=true;
+$(".cover_order").html(getorder());
+$(".cover_order").show();
  		html2canvas($('#cover_print'), {
 			  				background :'#FFFFFF',
  		                        onrendered: function(canvas) {
@@ -207,8 +264,12 @@
 								
  							   // var doc = new jsPDF('p', 'mm', [210,297]);
 							 //  doc.addPage();
+							 $scope.$parent.cover_done = true;
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
-											  alert();
+											  $(".cover_btn").removeClass('blue-flat-button');
+											  $(".cover_btn").addClass('gray-flat-button');
+											 	$scope.$digest();
+											//  alert();
 											  
  							 //                doc.save('cover.pdf');
 
@@ -218,6 +279,7 @@
  								        //      window.open(myImage);
  		                        }
  		 });
+	 }
 	}
 	
 	
@@ -365,7 +427,8 @@
  //  		 });
 	}
 		
-		
+	
+		$scope.cover = true;
 		$scope.generate = function(){
 			
 			$('.middle_layer').show();
@@ -374,14 +437,19 @@
 			
 			$scope.start_generating = true;
 			//alert();
-			if($scope.cover_report){
+			//if($scope.cover_report){
 				
 					$scope.cover = true;
-					$scope.$parent.cover_done = true;
-					
-			}
+					$scope.$parent.cover_done = false;
+					$scope.$parent.show_cover_btn=true;
+		//	}
 			if($scope.mile_report_trends){
 				//alert("mile");
+			
+					$scope.$parent.show_miles_btn=true;
+					$scope.$parent.miles_done = false;
+					
+				
 				var startdate = $("#start").val();
 				var enddate = $("#end").val();
 				var dataString='campaignid='+$scope.current_campaign_id+"&startdate="+startdate+"&enddate="+enddate+"&type=trends";
@@ -409,6 +477,11 @@
 			}
 			
 			if($scope.mile_report_cities){
+				
+					$scope.$parent.show_miles_btn=true;
+					$scope.$parent.miles_done = false;
+				//	alert();
+				
 				var startdate = $("#start").val();
 				var enddate = $("#end").val();
 				var dataString='campaignid='+$scope.current_campaign_id+"&startdate="+startdate+"&enddate="+enddate+"&type=cities";
@@ -436,6 +509,11 @@
 			
 			
 			if($scope.impression_report_trends){
+				// if($scope.impression_report_cities)
+// 				{
+					$scope.$parent.show_impressions_btn=true;
+					$scope.$parent.impressions_done = false;
+					//}
 				//alert("impression_report");
 				var startdate = $("#start").val();
 				var enddate = $("#end").val();
@@ -474,6 +552,11 @@
 			}
 			
 			if($scope.impression_report_cities){
+				// if($scope.impression_report_trends)
+// 				{
+					$scope.$parent.show_impressions_btn=true;
+					$scope.$parent.impressions_done = false;
+				// }
 				//alert("impression_report");
 				var startdate = $("#start").val();
 				var enddate = $("#end").val();
@@ -505,8 +588,9 @@
 			
 			
 			if($scope.map_report){
-
+				$scope.$parent.show_maps_btn=true;
 				$scope.map_report = true;
+				$scope.$parent.maps_done = false;
 				$('#pathdatepicker').datepicker('setDate', new Date($("#pathdate").val()));
 				$scope.map_start_date=$("#pathdate").val();
 				// var dataString='campaignid='+$scope.current_campaign_id;
@@ -527,6 +611,8 @@
 	// 			})
 			}
 			if($scope.story_report){
+				$scope.$parent.show_stories_btn =true;
+				$scope.$parent.stories_done = false;
 				var dataString='campaignid='+$scope.current_campaign_id;
 				
 				$.ajax({
@@ -545,6 +631,8 @@
 				})
 			}
 			if($scope.pic_report){
+				$scope.$parent.show_pictures_btn=true;
+				$scope.$parent.pictures_done = false;
 				var dataString='campaignid='+$scope.current_campaign_id;
 				
 				$.ajax({
@@ -562,6 +650,8 @@
 					}
 				})
 			}
+			
+			$scope.print_cover_report()
 			
 			
 		// $("html, body").delay(500).animate({ scrollTop: $('.report_area').offset().top }, 1000);

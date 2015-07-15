@@ -102,12 +102,12 @@
 				</div>
 			</div>
 			
-				<div class='row'>
+				<!-- <div class='row'>
 					<div class='col-md-6 checkbox_div'>
 						<h4 class='title'> Cover Page</h4>
 						<input type="checkbox"  ng-model="cover_report"> Cover Page
 					</div>
-				</div>
+				</div> -->
 				
 				<div class='row'>
 					<div class='col-md-4'>
@@ -163,47 +163,77 @@
 				
 				<div class='container pdf_btn_area'>
 					<h3><i class="fa fa-download"></i> Downloads</h3>
+					
+					
+					
 					<div class='pdf_single_btn_area col-md-8 col-md-offset-2'>
+						
+						
+						<div ng-show='show_cover_btn'>
 						<div class='col-md-3 ' ng-show='!cover_done'>
 						<i class="fa fa-cog fa-spin"></i>
 					</div>
 						<div class='col-md-3 ' ng-show='cover_done'>
-					<input type="submit" value="cover_pdf" ng-click='print_cover_report()' class="blue-flat-button"/></div>
+					<input type="submit" value="cover_pdf" ng-click='print_cover_report()' class="blue-flat-button cover_btn"/><span class='page_order_num cover_order'></span></div>
+				</div>
 					
+					
+					<div ng-show='show_miles_btn'>
 						<div class='col-md-3 ' ng-show='!miles_done'>
 						<i class="fa fa-cog fa-spin"></i>
 					</div>
 							<div class='col-md-3' ng-show='miles_done'>
-						<input type="submit" value="Miles_pdf" ng-click='print_miles_report()' class="blue-flat-button"/></div>
+						<input type="submit" value="Miles_pdf" ng-click='print_miles_report()' class="blue-flat-button miles_btn"/><span class='page_order_num miles_order'></span></div>
+					</div>
 						
+						
+						<div ng-show='show_impressions_btn'>
 							<div class='col-md-3 ' ng-show='!impressions_done'>
 							<i class="fa fa-cog fa-spin"></i>
 						</div>
 						<div class='col-md-3 ' ng-show='impressions_done'>
-					<input type="submit" value="Impressions_pdf" ng-click='print_impressions_report()' class="blue-flat-button"/></div>
+					<input type="submit" value="Impressions_pdf" ng-click='print_impressions_report()' class="blue-flat-button impressions_btn"/>
+				<span class='page_order_num impressions_order'></span></div>
+			</div>
+				
 					
+					<div ng-show='show_maps_btn'>
 						<div class='col-md-3 ' ng-show='!maps_done'>
 						<i class="fa fa-cog fa-spin"></i>
 					</div>
 						<div class='col-md-3 ' ng-show='maps_done'>
-					<input type="submit" value="Maps" ng-click='print_maps_report()' class="blue-flat-button"/></div>
+					<input type="submit" value="Maps" ng-click='print_maps_report()' class="blue-flat-button maps_btn"/>
+				<span class='page_order_num maps_order'></span></div>
+					</div>
+			
 						
+						<div ng-show='show_pictures_btn'>
 						<div class='col-md-3 ' ng-show='!pictures_done'>
 						<i class="fa fa-cog fa-spin"></i>
 					</div>
 						<div class='col-md-3 ' ng-show='pictures_done'>
-					<input type="submit" value="Pictures" ng-click='print_pictures_report()' class="blue-flat-button"/></div>
+					<input type="submit" value="Pictures" ng-click='print_pictures_report()' class="blue-flat-button pictures_btn"/>
+				<span class='page_order_num pictures_order'></span></div>
+			</div>
 					
+					<div ng-show='show_stories_btn'>
 						<div class='col-md-3 ' ng-show='!stories_done'>
 						<i class="fa fa-cog fa-spin"></i>
 					</div>
 						<div class='col-md-3 ' ng-show='stories_done'>
-					<input type="submit" value="Stories" ng-click='print_stories_report()' class="blue-flat-button"/></div>
+					<input type="submit" value="Stories" ng-click='print_stories_report()' class="blue-flat-button stories_btn"/>
+				<span class='page_order_num stories_order'></span></div>
+			</div>
+				
 				</div>
+				
 				<div class='pdf_whole_btn_area col-md-8 col-md-offset-2' ng-show='!(cover_done&&miles_done&&impressions_done&&maps_done&&stories_done&&pictures_done)'>
+					
 					<i class="fa fa-cog fa-spin"></i>
 				</div>
 				<div class='pdf_whole_btn_area col-md-8 col-md-offset-2' ng-show='cover_done&&miles_done&&impressions_done&&maps_done&&stories_done&&pictures_done'>
+					
+					
 					<input type="submit" value="Full PDF" ng-click='print_full_pdf()' class="blue-flat-button"/>
 				</div>
 				</div>
@@ -216,10 +246,11 @@
 				<div class='cover_carvertise_name'>Carvertise</div>
 			</div>
 		</div>
-		<div class='row'>
+		<!-- <div class='row'>
 				<div class='col-md-4 col-md-offset-4'>
-			<input type="submit" value="cover_pdf" ng-click='print_cover_report()' class="blue-flat-button"/></div>
+			<input type="submit" value="cover_pdf" ng-click='print_cover_report()' class="blue-flat-button"/>
 		</div>
+		</div> -->
 	
 				<div class='report_area container' ng-controller='chartsController'>
 					
@@ -264,10 +295,10 @@
 					<!-- Mile report print end -->
 					
 					
-					<div class='row'>
+					<!-- <div class='row'>
 							<div class='col-md-4 col-md-offset-4'>
 						<input type="submit" value="Miles_pdf" ng-click='print_miles_report()' class="blue-flat-button"/></div>
-					</div>
+					</div> -->
 					
 					
 					<!-- Mile report end -->
@@ -306,10 +337,10 @@
 						
 					</div>
 					<!-- Impressions report print end -->
-					<div class='row'>
+					<!-- <div class='row'>
 							<div class='col-md-4 col-md-offset-4'>
 						<input type="submit" value="Impressions_pdf" ng-click='print_impressions_report()' class="blue-flat-button"/></div>
-					</div>
+					</div> -->
 					<!-- Impressions report end -->
 					
 					</div>
@@ -321,13 +352,13 @@
 					<div class='whole_page' >
 						<div ng-show='map_report'>
 						<div class='map_area' ng-controller='mapsController' >
-							 <div class="panel panel-default">
+							 <!-- <div class="panel panel-default">
 							  <div class="panel-heading">
 							  <button class='btn btn-sm btn-default' ng-click ='dateleft()'><i class="fa fa-caret-left fa-lg"></i>
-							 <input type="text"  name="start" id="pathdatepicker" ></input> 
+							 <input type="text"  name="start" id="pathdatepicker" ></input>
 							 <button class='btn btn-sm btn-default' ng-click ='dateright()'><i class="fa fa-caret-right fa-lg"></i>
 							  </div>
-						  </div>
+						  </div> -->
 						  <div id='maps_print'>
 								<div class='chart_title'>
 									<i class="fa fa-map-marker"></i> Maps
@@ -337,10 +368,10 @@
 						</div>
 					</div>
 					</div>
-					<div class='row'>
+					<!-- <div class='row'>
 							<div class='col-md-4 col-md-offset-4'>
 						<input type="submit" value="maps_pdf" ng-click='print_maps_report()' class="blue-flat-button"/></div>
-					</div>
+					</div> -->
 					<!-- Maps report end -->
 					
 					
@@ -361,10 +392,10 @@
 					</div>
 				</div>
 					</div>
-					<div class='row'>
+					<!-- <div class='row'>
 							<div class='col-md-4 col-md-offset-4'>
 						<input type="submit" value="pictures_pdf" ng-click='print_pictures_report()' class="blue-flat-button"/></div>
-					</div>
+					</div> -->
 					<!-- pictures end -->
 					
 					<!-- stories -->
@@ -382,14 +413,13 @@
 									
 								</div>
 							</div>
-							
 						</div>
 					</div>
 					</div>
-					<div class='row'>
+					<!-- <div class='row'>
 							<div class='col-md-4 col-md-offset-4'>
 						<input type="submit" value="stories_pdf" ng-click='print_stories_report()' class="blue-flat-button"/></div>
-					</div>
+					</div> -->
 					
 					<!-- stroies end -->
 				

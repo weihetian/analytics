@@ -5,13 +5,20 @@
 	app.controller('selectorController',function($scope){
 		
 		//buttons done check
-		$scope.cover_done = false;
-		$scope.miles_done = false;
-		$scope.impressions_done = false;
-		$scope.maps_done = false;
-		$scope.pictures_done = false;
-		$scope.stories_done = false;
+		$scope.cover_done = true;
+		$scope.miles_done = true;
+		$scope.impressions_done = true;
+		$scope.maps_done = true;
+		$scope.pictures_done = true;
+		$scope.stories_done = true;
 		
+		
+		$scope.show_cover_btn=true;
+		$scope.show_miles_btn = false;
+		$scope.show_impressions_btn = false;
+		$scope.show_maps_btn=false;
+		$scope.show_stories_btn=false;
+		$scope.show_pictures_btn=false;
 		
 		$scope.cancel = function(){
 			$('.middle_layer').hide();

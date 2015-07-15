@@ -4,14 +4,17 @@
     app.controller('chartsController', ['$scope', function ($scope) {
 		
 		var mile_trends_linechart;
-		var mile_trends_linechart_created=false;
+		var mile_trends_linechart_created=true;
 		
 		
 		$scope.$watch("mile_trendsjson", function(){
+			
 			// alert($scope.mile_trendsjson);
 			// var a = document.getElementById("hide_area");
 	// 		a.style.display = "block";
 			if($scope.mile_trendsjson!=undefined){
+
+				mile_trends_linechart_created=false;
 			
 			var keys = [];
 		     var values = [];
@@ -80,13 +83,15 @@
 		
 		
 		var mile_cities_barchart;
-		var mile_cities_barchart_created=false;
+		var mile_cities_barchart_created=true;
 		
 		$scope.$watch("mile_citiesjson", function(){
+
+			
 			// var a = document.getElementById("hide_area");
 	// 		a.style.display = "block";
 			if($scope.mile_citiesjson!=undefined){
-			
+			mile_cities_barchart_created=false;
 			var keys = [];
 		     var values = [];
 			var sum = 0;
@@ -153,13 +158,13 @@
 	//Impressions report goes here
 		
 		var impressions_trends_linechart;
-		var impressions_trends_linechart_created=false;
+		var impressions_trends_linechart_created=true;
 		
 		
 		$scope.$watch("impressions_trendsjson", function(){
 		
 			if($scope.impressions_trendsjson!=undefined){
-			
+			impressions_trends_linechart_created=false;
 			var keys = [];
 		     var values = [];
 			var sum = 0;
@@ -225,14 +230,14 @@
 		
 		
 		var impressions_cities_barchart;
-		var impressions_cities_barchart_created=false;
+		var impressions_cities_barchart_created=true;
 		
 		
 		
 		$scope.$watch("impressions_citiesjson", function(){
 
 			if($scope.impressions_citiesjson!=undefined){
-			
+			impressions_cities_barchart_created=false;
 			var keys = [];
 		     var values = [];
 			var sum = 0;
