@@ -29,6 +29,9 @@
 		
 		$scope.start_generating = false;
 		
+		
+		var processing = false;
+		
 		var getorder=function(){
 			$scope.pdf_pages++;
 			return $scope.pdf_pages;
@@ -90,8 +93,12 @@
 	}
 	
 	$scope.print_miles_report = function(){
+		if(processing){
+			alert("The system is generating another page, please wait till it's done.");
+			return;
+		}
 		if(!miles_inorder){
-
+			processing=true;
 			miles_inorder=true;
 		$(".miles_order").html(getorder());
 		$(".miles_order").show();
@@ -106,7 +113,7 @@
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
 											  $(".miles_btn").removeClass('blue-flat-button');
 											  $(".miles_btn").addClass('gray-flat-button');
-											  
+											  processing=false;
 											//  alert();
  							      //           doc.save('miles.pdf');
 
@@ -120,11 +127,15 @@
 	}
 	
 	$scope.print_impressions_report = function(){
+		if(processing){
+			alert("The system is generating another page, please wait till it's done.");
+			return;
+		}
 		//
 		// var a = document.getElementById("hide_area");
 		// a.style.display = "block";
 		if(!impressions_inorder){
-
+			processing = true;
 			impressions_inorder=true;
 		$(".impressions_order").html(getorder());
 		$(".impressions_order").show();
@@ -137,7 +148,7 @@
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
 											  $(".impressions_btn").removeClass('blue-flat-button');
 											  $(".impressions_btn").addClass('gray-flat-button');
-											  
+											  processing = false;
  							     //            doc.save('impressions.pdf');
 											 	// a.style.display = "none";
  	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
@@ -149,6 +160,7 @@
 	}
 	
 	$scope.show_maps_sample = function(){
+		
 		//$( ".datepicker" ).datepicker();
 		$scope.map_start_date=$("#start").val();
 		$('#sample_pathdatepicker').datepicker('setDate', new Date($("#start").val()));
@@ -170,8 +182,12 @@
 	}
 	
 	$scope.print_maps_report = function(){
+		if(processing){
+			alert("The system is generating another page, please wait till it's done.");
+			return;
+		}
 		if(!maps_inorder){
-
+			processing = true;
    		 maps_inorder=true;
 		$(".maps_order").html(getorder());
 		$(".maps_order").show();
@@ -185,7 +201,7 @@
 							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
 											  $(".maps_btn").removeClass('blue-flat-button');
 											  $(".maps_btn").addClass('gray-flat-button');
-											 
+											  processing = false;
 							    //              doc.save('maps.pdf');
 	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
 
@@ -196,8 +212,12 @@
 	}
 	
 	$scope.print_pictures_report=function(){
+		if(processing){
+			alert("The system is generating another page, please wait till it's done.");
+			return;
+		}
 		if(!pictures_inorder){
-
+			processing=true;
 			pictures_inorder=true;
 		$(".pictures_order").html(getorder());
 		$(".pictures_order").show();
@@ -210,7 +230,7 @@
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
 											  $(".pictures_btn").removeClass('blue-flat-button');
 											  $(".pictures_btn").addClass('gray-flat-button');
-											  
+											  processing = false;
  							   //              doc.save('pictures.pdf');
  	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
 						
@@ -223,8 +243,12 @@
 	$scope.print_stories_report=function(){
 		// var a = document.getElementById("hide_area");
 	// 	a.style.display = "block";
+	if(processing){
+		alert("The system is generating another page, please wait till it's done.");
+		return;
+	}
 	if(!stories_inorder){
-
+		processing = true;
 		stories_inorder=true;
 	$(".stories_order").html(getorder());
 	$(".stories_order").show();
@@ -237,7 +261,7 @@
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
 											  $(".stories_btn").removeClass('blue-flat-button');
 											  $(".stories_btn").addClass('gray-flat-button');
-											  
+											  processing =false;
  							 //                doc.save('stores.pdf');
 											    // a.style.display = "none";
  	                         //  document.getElementById("pdf_canvas").innerHTML= "<a download='test' href='"+myImage+"'>this is test</a>";
@@ -253,7 +277,7 @@
 		// var a = document.getElementById("hide_area");
 // 		a.style.display = "block";
 if(!cover_inorder){
-
+	processing = true;
     cover_inorder=true;
 $(".cover_order").html(getorder());
 $(".cover_order").show();
@@ -268,6 +292,7 @@ $(".cover_order").show();
  							                  doc.addImage(myImage, 'JPEG', 0, 0,210,297);
 											  $(".cover_btn").removeClass('blue-flat-button');
 											  $(".cover_btn").addClass('gray-flat-button');
+											  processing = false;
 											 	$scope.$digest();
 											//  alert();
 											  
